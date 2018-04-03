@@ -1,6 +1,6 @@
-import { SET_ACTIVE_OPTION } from './map.actions';
+import { SET_ACTIVE_OPTION } from './toggle.actions';
 
-import data from './data.json';
+import data from '../data.json';
 
 const options = [
   {
@@ -44,6 +44,7 @@ export const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log('Toggle Reducer: ', state, action);
   switch (action.type) {
     case SET_ACTIVE_OPTION:
       return {

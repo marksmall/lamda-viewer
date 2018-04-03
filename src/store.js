@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { applyMiddleware, compose, createStore } from 'redux';
 
-import mapReducer from './map/map.reducer';
+import toggleReducer from './toggle/toggle.reducer';
 
 // 1. Setup store to use middleware (thunk) to create API calls.
 // 2. Add redux-logger to middleware.
@@ -17,12 +17,12 @@ if (process.env.NODE_ENV === 'development') {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   store = createStore(
-    mapReducer,
+    toggleReducer,
     composeEnhancers(applyMiddleware(...middleware))
   );
 } else {
   // 1. Create store composed of reducers and middleware.
-  store = createStore(mapReducer, applyMiddleware(...middleware));
+  store = createStore(toggleReducer, applyMiddleware(...middleware));
 }
 
 export default store;
