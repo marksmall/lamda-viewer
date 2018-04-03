@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+
 import styles from './App.module.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className={styles.app}>
-        <header className={styles.header}>
-          <img src={logo} className={styles.logo} alt="logo" />
-          <h1 className={styles.title}>Welcome to React</h1>
-        </header>
-        <p className={styles.intro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+import { setActiveOption } from './map/map.actions';
+
+import MapContainer from './map/map.container';
+import Toggle from './map/toggle.component';
+import Legend from './map/legend.component';
+
+const App = () => (
+  <div className={styles.app}>
+    <MapContainer />
+    <Toggle onChange={setActiveOption} />
+    <Legend />
+  </div>
+);
 
 export default App;
