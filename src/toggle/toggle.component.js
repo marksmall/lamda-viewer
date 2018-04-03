@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './toggle.module.css';
+
 const renderOptions = (options, active, setActiveOption) => {
   return options.map((option, i) => {
     return (
@@ -22,7 +24,11 @@ const renderOptions = (options, active, setActiveOption) => {
 const Toggle = props => {
   const { options, active, setActiveOption } = props;
   return (
-    <div className="toggle-group absolute top left ml12 mt12 border border--2 border--white bg-white shadow-darken10 z1">
+    <div
+      className={`toggle-group absolute top right ml12 mt12 border border--2 border--white bg-white shadow-darken10 z1 ${
+        styles['satellite-types']
+      }`}
+    >
       {renderOptions(options, active, setActiveOption)}
     </div>
   );

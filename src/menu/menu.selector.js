@@ -1,1 +1,1 @@
-export const isMenuVisible = state => state.menuActive;
+export const isMenuVisible = state => state.menu.isMenuVisible;
