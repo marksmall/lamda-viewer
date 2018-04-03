@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const renderOptions = (options, active, setActiveOption) => {
-  // console.log('renderOptions: ', options, active, setActiveOption);
   return options.map((option, i) => {
-    // console.log('Mapping Options: ', option, i);
     return (
       <label key={i} className="toggle-container">
         <input
@@ -26,7 +24,6 @@ const Toggle = props => {
   return (
     <div className="toggle-group absolute top left ml12 mt12 border border--2 border--white bg-white shadow-darken10 z1">
       {renderOptions(options, active, setActiveOption)}
-      {/* {options.map(renderOptions)} */}
     </div>
   );
 };

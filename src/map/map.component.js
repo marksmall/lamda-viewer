@@ -45,7 +45,6 @@ class Map extends React.Component {
   }
 
   setFill() {
-    console.log('PROPS: ', this.props);
     const { property, stops } = this.props.active;
     this.map.setPaintProperty('countries', 'fill-color', {
       property,
