@@ -1,2 +1,2 @@
-export const data = state => state.data;
-export const isActive = state => state.active;
+export const data = state => state.toggle.data;
+export const isActive = state => state.toggle.active;

@@ -1,1 +1,1 @@
-export const isActive = state => state.active;
+export const isActive = state => state.toggle.active;
