@@ -2,13 +2,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { setActiveOption } from './toggle.actions';
+import { isActive, options } from './toggle.selector';
 
 import Toggle from './toggle.component';
 
 const mapStateToProps = state => {
   return {
-    options: state.options,
-    active: state.active
+    options: options(state),
+    active: isActive(state)
   };
 };
 

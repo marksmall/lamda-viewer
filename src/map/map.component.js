@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl';
 mapboxgl.accessToken =
   'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
 
-let Map = class Map extends React.Component {
+class Map extends React.Component {
   map;
 
   static propTypes = {
@@ -61,15 +61,6 @@ let Map = class Map extends React.Component {
       />
     );
   }
-};
-
-// function mapStateToProps(state) {
-//   return {
-//     data: state.data,
-//     active: state.active
-//   };
-// }
-
-// Map = connect(mapStateToProps)(Map);
+}
 
 export default Map;

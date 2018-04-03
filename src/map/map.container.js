@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 
+import { data, isActive } from './map.selector';
+
 import Map from './map.component';
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
-    data: state.data,
-    active: state.active
+    data: data(state),
+    active: isActive(state)
   };
-}
+};
 
 export default connect(mapStateToProps)(Map);
