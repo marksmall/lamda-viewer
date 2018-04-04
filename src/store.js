@@ -5,16 +5,18 @@ import { combineReducers } from 'redux';
 
 import toggle from './toggle/toggle.reducer';
 import menu from './menu/menu.reducer';
+import map from './map/map.reducer';
 
 const rootReducer = combineReducers({
   toggle,
-  menu
+  menu,
+  map
 });
 
 // 1. Setup store to use middleware (thunk) to create API calls.
 // 2. Add redux-logger to middleware.
 const middleware = [thunk];
-middleware.push(createLogger());
+// middleware.push(createLogger());
 
 let store;
 

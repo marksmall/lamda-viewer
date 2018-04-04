@@ -1,71 +1,39 @@
-import { SET_ACTIVE_OPTION } from './toggle.actions';
+import { SET_ACTIVE_SATELLITE } from './toggle.actions';
 
 import data from '../data.json';
 
-const options = [
+const satellites = [
   {
-    name: 'Landsat',
-    description: 'Landsat Description',
-    property: 'pop_est',
-    stops: [
-      [0, '#f8d5cc'],
-      [1000000, '#f4bfb6'],
-      [5000000, '#f1a8a5'],
-      [10000000, '#ee8f9a'],
-      [50000000, '#ec739b'],
-      [100000000, '#dd5ca8'],
-      [250000000, '#c44cc0'],
-      [500000000, '#9f43d7'],
-      [1000000000, '#6e40e6']
-    ]
+    name: 'landsat',
+    label: 'Landsat',
+    layer: 'Landsat8_Desc_filtr2',
+    url: 'mapbox://vincentsarago.8ib6ynrs'
   },
   {
-    name: 'Sentinel',
-    description: 'Sentinel Description',
-    property: 'gdp_md_est',
-    stops: [
-      [0, '#f8d5cc'],
-      [1000, '#f4bfb6'],
-      [5000, '#f1a8a5'],
-      [10000, '#ee8f9a'],
-      [50000, '#ec739b'],
-      [100000, '#dd5ca8'],
-      [250000, '#c44cc0'],
-      [5000000, '#9f43d7'],
-      [10000000, '#6e40e6']
-    ]
+    name: 'sentinel',
+    label: 'Sentinel',
+    layer: 'Sentinel2_Grid',
+    url: 'mapbox://vincentsarago.8ib6ynrs'
   },
   {
-    name: 'CBERS',
-    description: 'CBERS Description',
-    property: 'blah',
-    stops: [
-      [0, '#f8d5cc'],
-      [1000, '#f4bfb6'],
-      [5000, '#f1a8a5'],
-      [10000, '#ee8f9a'],
-      [50000, '#ec739b'],
-      [100000, '#dd5ca8'],
-      [250000, '#c44cc0'],
-      [5000000, '#9f43d7'],
-      [10000000, '#6e40e6']
-    ]
+    name: 'cbers',
+    label: 'CBERS',
+    layer: 'cbers_grid-41mvmk',
+    url: 'mapbox://vincentsarago.8ib6ynrs'
   }
 ];
 
 export const INITIAL_STATE = {
-  data,
-  options,
-  active: options[0]
+  // data,
+  satellites,
+  active: satellites[0]
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log('Toggle Reducer: ', state, action);
   switch (action.type) {
-    case SET_ACTIVE_OPTION:
-      return {
-        ...state,
-        active: action.option
-      };
+    case SET_ACTIVE_SATELLITE:
+      return { ...state, active: action.option };
 
     default:
       return state;

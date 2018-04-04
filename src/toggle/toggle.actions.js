@@ -1,8 +1,6 @@
-export const SET_ACTIVE_OPTION = 'SET_ACTIVE_OPTION';
+export const SET_ACTIVE_SATELLITE = 'SET_ACTIVE_SATELLITE';
 
-export const setActiveOption = option => dispatch => {
-  dispatch({
-    type: SET_ACTIVE_OPTION,
-    option
-  });
+export const setActiveSatellite = option => dispatch => {
+  // console.log('Setting Active Satellite, ', option);
+  dispatch({ type: SET_ACTIVE_SATELLITE, option });
 };

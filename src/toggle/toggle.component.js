@@ -3,37 +3,34 @@ import PropTypes from 'prop-types';
 
 import styles from './toggle.module.css';
 
-const renderOptions = (options, active, setActiveOption) => {
-  return options.map((option, i) => {
+const renderOptions = (satellites, active, setActiveSatellite) =>
+  satellites.map((satellite, i) => {
     return (
       <label key={i} className="toggle-container">
         <input
-          onChange={() => setActiveOption(option)}
-          checked={option.property === active.property}
-          name="toggle"
+          name="satellite"
+          value={satellite.layer}
           type="radio"
+          checked={satellite.name === active.name}
+          onChange={() => setActiveSatellite(satellite)}
         />
         <div className="toggle txt-s py3 toggle--active-white">
-          {option.name}
+          {satellite.name}
         </div>
       </label>
     );
   });
-};
 
-const Toggle = props => {
-  const { options, active, setActiveOption } = props;
-  return (
-    <div className={styles['satellite-types']}>
-      {renderOptions(options, active, setActiveOption)}
-    </div>
-  );
-};
+const Toggle = ({ satellites, active, setActiveSatellite }) => (
+  <div className={styles['satellite-types']}>
+    {renderOptions(satellites, active, setActiveSatellite)}
+  </div>
+);
 
 Toggle.propTypes = {
-  options: PropTypes.array.isRequired,
+  satellites: PropTypes.array.isRequired,
   active: PropTypes.object.isRequired,
-  setActiveOption: PropTypes.func.isRequired
+  setActiveSatellite: PropTypes.func.isRequired
 };
 
 export default Toggle;

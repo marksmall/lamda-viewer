@@ -12,6 +12,16 @@ const SATELLITE_TYPES = [
     name: 'landsat',
     layer: 'Landsat8_Desc_filtr2',
     url: 'mapbox://vincentsarago.8ib6ynrs'
+  },
+  {
+    name: 'sentinel',
+    layer: 'Sentinel2_Grid',
+    url: 'mapbox://vincentsarago.8ib6ynrs'
+  },
+  {
+    name: 'cbers',
+    layer: 'cbers_grid-41mvmk',
+    url: 'mapbox://vincentsarago.8ib6ynrs'
   }
 ];
 
@@ -19,8 +29,6 @@ const LAYERS = [
   {
     id: 'Grid',
     type: 'fill',
-    source: SATELLITE_TYPES[0].name,
-    'source-layer': SATELLITE_TYPES[0].layer,
     paint: {
       'fill-color': 'hsla(0, 0%, 0%, 0)',
       'fill-outline-color': {
@@ -33,8 +41,6 @@ const LAYERS = [
   {
     id: 'Highlighted',
     type: 'fill',
-    source: SATELLITE_TYPES[0].name,
-    'source-layer': SATELLITE_TYPES[0].layer,
     paint: {
       'fill-color': '#0f6d8e',
       'fill-outline-color': '#1386af',
@@ -45,8 +51,6 @@ const LAYERS = [
   {
     id: 'Selected',
     type: 'line',
-    source: SATELLITE_TYPES[0].name,
-    'source-layer': SATELLITE_TYPES[0].layer,
     paint: {
       'line-color': '#4c67da',
       'line-width': 3
@@ -59,7 +63,7 @@ class Map extends Component {
   map;
 
   static propTypes = {
-    data: PropTypes.object.isRequired,
+    // data: PropTypes.object.isRequired,
     active: PropTypes.object.isRequired
   };
 
@@ -71,13 +75,28 @@ class Map extends Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
+  updateVisibleLayers = () => {
+    const layers = this.map.getStyle().layers;
+    console.log('MAP LAYERS: ', layers);
+    for (let name of ['Grid', 'Highlighted', 'Selected']) {
+      if (this.map.getLayer(name)) {
+        this.map.removeLayer(name);
+      }
+    } // layers.forEach(layer => {
+    //   if (layer.id !== 'background' && layer.id !== 'mapbox-mapbox-satellite') {
+    //     this.map.removeLayer(layer.id);
+    //   }
+    // });
+  };
+
+  componentDidUpdate = () => {
+    console.log('componentDidUpdate: ', this.props);
+    this.updateVisibleLayers();
     // TODO: This should be linked to the toggle button, we can change the visible vectors from there, consider hide/show, rather than add/remove.
     //   this.setFill();
-  }
+  };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/satellite-streets-v9',
@@ -92,16 +111,21 @@ class Map extends Component {
           type: 'vector',
           url: type.url
         });
+      });
 
-        LAYERS.forEach(layer => {
-          this.map.addLayer(layer);
+      const activeLayer = this.props.active;
+      LAYERS.forEach(layer => {
+        this.map.addLayer({
+          ...layer,
+          source: activeLayer.name,
+          'source-layer': activeLayer.layer
         });
       });
 
       this.map.on('click', this.onClick);
       this.map.on('mousemove', this.onMouseMove);
     });
-  }
+  };
 
   onClick = event => {
     const features = this.map.queryRenderedFeatures(event.point, {
@@ -169,6 +193,7 @@ class Map extends Component {
   // }
 
   render() {
+    console.log('MAP PROPS: ', this.props);
     return (
       <div
         ref={el => (this.mapContainer = el)}
