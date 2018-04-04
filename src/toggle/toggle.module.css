@@ -1,0 +1,13 @@
+.satellite-types {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  border-radius: 18px;
+  text-align: center;
+  margin-right: 3rem;
+  margin-top: 1rem;
+  z-index: 1;
+  background-color: #fff;
+  border: 2px solid #fff;
+}
