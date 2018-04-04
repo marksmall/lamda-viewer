@@ -1,33 +1,62 @@
-.menu {
-  display: block;
-}
-
-.menu > div {
+.menu-container {
   position: absolute;
-  z-index: 2;
   top: 0;
-  width: 250px;
-  height: 100%;
-
-  background: #273d7a;
-  left: -250px;
+  left: 0;
 }
 
-/* .menu > div.left {
-  background: #273d7a;
-  left: -250px;
-} */
-
-.menu > div > .menu-item {
-  float: left;
-  width: 100%;
-  margin: 0;
-  padding: 10px 15px;
-  border-bottom: solid 1px #555;
+/*
+ * Handle the burger menu styling, this includes transitioning from 3-lines
+ * to a cross depending on the state of the menu i.e. visible/hidden
+ */
+.hamburger-button {
+  display: flex;
+  flex-direction: column;
+  max-width: 2.5rem;
+  margin: 2rem;
+  background-color: grey;
   cursor: pointer;
-  color: #b0b0b0;
 }
 
-.menu > div > .menu-item:hover {
-  color: #f0f0f0;
+.hamburger-button div {
+  width: 2rem;
+  height: 0.25rem;
+  background-color: #000;
+  margin: 0.25rem;
+  transition: 0.4s;
+}
+
+.hamburger-button.visible div:nth-child(1) {
+  -webkit-transform: rotate(-45deg) translate(-8px, 8px);
+  transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.hamburger-button.visible div:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-button.visible div:nth-child(3) {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+/* burger menu styling */
+
+/*
+ * Style the slide-in/out menu
+ */
+.menu {
+  /* position: absolute; */
+  bottom: 0;
+  min-width: 20vw;
+  /* max-width: 33vw; */
+  min-height: 80vh;
+  /* max-height: 90vh; */
+  transform: translateX(-100%);
+  transition: transform 300ms;
+  background-color: green;
+  bottom: 0;
+  left: 0;
+}
+
+.menu.visible {
+  transform: none;
 }

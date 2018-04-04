@@ -6,21 +6,29 @@ import styles from './menu.module.css';
 const Menu = ({ toggleMenu, isMenuVisible, children }) => {
   console.log('MENU: ', toggleMenu, isMenuVisible, children);
   return (
-    <div className={styles.menu}>
-      <button
-        className="toggle-group absolute top right ml12 mt12 border border--2 border--white bg-white shadow-darken10 z1"
+    <div className={styles['menu-container']}>
+      <div
+        className={`${styles['hamburger-button']} ${
+          isMenuVisible ? styles.visible : ''
+        }`}
         onClick={() => toggleMenu()}
       >
-        Menu
-      </button>
+        <div />
+        <div />
+        <div />
+      </div>
 
-      <div className={`menu ${isMenuVisible ? 'visible' : ''}`}>{children}</div>
+      <div className={`${styles.menu} ${isMenuVisible ? styles.visible : ''}`}>
+        {children}
+      </div>
     </div>
   );
 };
 
-// Menu.propTypes = {
-//   show:
-// };
+Menu.propTypes = {
+  toggleMenu: PropTypes.func.isRequired,
+  isMenuVisible: PropTypes.bool.isRequired,
+  children: PropTypes.arrayOf(PropTypes.shape(PropTypes.object.isRequired))
+};
 
 export default Menu;

@@ -9,6 +9,9 @@ const MenuItem = ({ selectMenuItem, children }) => (
   </div>
 );
 
-// MenuItem.propTypes = {};
+MenuItem.propTypes = {
+  selectMenuItem: PropTypes.func,
+  children: PropTypes.string.isRequired
+};
 
 export default MenuItem;
