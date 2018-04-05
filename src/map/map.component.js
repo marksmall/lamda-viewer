@@ -10,16 +10,19 @@ mapboxgl.accessToken =
 const SATELLITE_TYPES = [
   {
     name: 'landsat',
+    label: 'Landsat-8',
     layer: 'Landsat8_Desc_filtr2',
     url: 'mapbox://vincentsarago.8ib6ynrs'
   },
   {
     name: 'sentinel',
+    label: 'Sentinel-2',
     layer: 'Sentinel2_Grid',
-    url: 'mapbox://vincentsarago.8ib6ynrs'
+    url: 'mapbox://vincentsarago.0qowxm38'
   },
   {
     name: 'cbers',
+    label: 'CBERS',
     layer: 'cbers_grid-41mvmk',
     url: 'mapbox://vincentsarago.8ib6ynrs'
   }

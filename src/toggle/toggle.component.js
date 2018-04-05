@@ -8,14 +8,14 @@ const renderOptions = (satellites, active, setActiveSatellite) =>
     return (
       <label key={i} className="toggle-container">
         <input
+          type="radio"
           name="satellite"
           value={satellite.layer}
-          type="radio"
           checked={satellite.name === active.name}
           onChange={() => setActiveSatellite(satellite)}
         />
         <div className="toggle txt-s py3 toggle--active-white">
-          {satellite.name}
+          {satellite.label}
         </div>
       </label>
     );

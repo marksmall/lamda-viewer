@@ -7,6 +7,7 @@ import ToggleContainer from './toggle/toggle.container';
 // import LegendContainer from './legend/legend.container';
 import MenuContainer from './menu/menu.container';
 import MenuItem from './menu/menu-item.component';
+import SelectionContainer from './selection/selection.container';
 
 const App = ({ toggleMenu }) => (
   <div className={styles.app}>
@@ -14,7 +15,9 @@ const App = ({ toggleMenu }) => (
     <ToggleContainer />
 
     <MenuContainer>
-      <MenuItem>Item 1</MenuItem>
+      <MenuItem>
+        <SelectionContainer />
+      </MenuItem>
       <MenuItem>Item 2</MenuItem>
       <MenuItem>Item 3</MenuItem>
     </MenuContainer>

@@ -1,33 +1,24 @@
-const MAP_CLICKED = 'MAP_CLICKED';
-const MAP_MOUSE_MOVED = 'MAP_MOUSE_MOVED';
-
-export const onMapClick = point => ({
-  type: MAP_CLICKED,
-  point
-});
-
-export const onMapMouseMove = point => ({
-  type: MAP_MOUSE_MOVED,
-  point
-});
+import { MAP_CLICKED, MAP_MOUSE_MOVED, MAP_UPDATE_LAYERS } from './map.actions';
 
 const initialState = {
-  point: null
+  point: null,
+  selectedFeatures: []
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('MAP REDUCER: ', state, action);
   switch (action.type) {
     case MAP_CLICKED:
+      console.log('MAP REDUCER: ', state, action);
       return {
         ...state,
-        point: action.point
+        point: action.point,
+        selectedFeatures: action.selectedFeatures
       };
     case MAP_MOUSE_MOVED:
-      return {
-        ...state,
-        point: action.point
-      };
+      return { ...state, point: action.point };
+
+    case MAP_UPDATE_LAYERS:
+      return state;
 
     default:
       return state;

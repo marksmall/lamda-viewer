@@ -20,16 +20,19 @@ const Map = ReactMapboxGl({
 const SATELLITE_TYPES = [
   {
     name: 'landsat',
+    label: 'Landsat-8',
     layer: 'Landsat8_Desc_filtr2',
     url: 'mapbox://vincentsarago.8ib6ynrs'
   },
   {
     name: 'sentinel',
+    label: 'Sentinel-2',
     layer: 'Sentinel2_Grid',
-    url: 'mapbox://vincentsarago.8ib6ynrs'
+    url: 'mapbox://vincentsarago.0qowxm38'
   },
   {
     name: 'cbers',
+    label: 'CBERS',
     layer: 'cbers_grid-41mvmk',
     url: 'mapbox://vincentsarago.8ib6ynrs'
   }
@@ -69,45 +72,53 @@ const LAYERS = [
   }
 ];
 
-class MapWrapper extends Component {
-  map;
+// class MapWrapper extends Component {
+// map;
 
-  // const MapWrapper = ({ active }) => {
-  render() {
-    const { active, onMapClick, onMapMouseMove } = this.props;
-    console.log('RENDERING: ', active, onMapClick, onMapMouseMove);
-    return (
-      <Map style="mapbox://styles/mapbox/satellite-streets-v9"
-           containerStyle={{ height: '100vh', width: '100vw' }}
-           zoom={[3]}
-           onClick={event => onMapClick(event.point)}
-           onMouseMove={event => onMapMouseMove(event.point)}
-           className={styles['map-container']}
-           ref={map => (this.map = map)}
-      >
-        <ZoomControl />
-        <RotationControl />
-        <ScaleControl />
+const MapWrapper = ({ active, onMapClick, onMapMouseMove }) => {
+  // render() {
+  //   const { active, onMapClick, onMapMouseMove } = this.props;
+  console.log('MapWrapper: ', active);
+  return (
+    <Map
+      style="mapbox://styles/mapbox/satellite-streets-v9"
+      containerStyle={{ height: '100vh', width: '100vw' }}
+      zoom={[3]}
+      onClick={(map, event) => onMapClick(map, event.point)}
+      onMouseMove={(map, event) => onMapMouseMove(event.point)}
+      className={styles['map-container']}
+      // ref={map => (this.map = map)}
+    >
+      <ZoomControl />
+      <RotationControl />
+      <ScaleControl />
 
-        {SATELLITE_TYPES.map(type =>
-          <Source id={type.name}
-                  tileJsonSource={{ type: 'vector', url: type.url }}
+      {SATELLITE_TYPES.map(type => (
+        <Source
+          key={type.name}
+          id={type.name}
+          tileJsonSource={{ type: 'vector', url: type.url }}
+        />
+      ))}
+
+      {LAYERS.map(layer => {
+        console.log('Draw LAYERS: ', layer, active);
+        return (
+          <Layer
+            key={layer.id}
+            id={layer.id}
+            type={layer.type}
+            sourceId={active.name}
+            sourceLayer={active.layer}
+            paint={layer.paint}
+            filter={layer.filter ? layer.filter : null}
           />
-        )}
-
-        {LAYERS.map(layer =>
-          <Layer id={layer.id}
-                 type={layer.type}
-                 sourceId={active.name}
-                 sourceLayer={active.layer}
-                 paint={layer.paint}
-                 filter={layer.filter ? layer.filter : null}
-          />
-        )}
-      </Map>
-    );
-  }
-}
+        );
+      })}
+    </Map>
+  );
+};
+// }
 
 MapWrapper.propTypes = {};
 

@@ -13,7 +13,7 @@ const satellites = [
     name: 'sentinel',
     label: 'Sentinel',
     layer: 'Sentinel2_Grid',
-    url: 'mapbox://vincentsarago.8ib6ynrs'
+    url: 'mapbox://vincentsarago.0qowxm38'
   },
   {
     name: 'cbers',
@@ -30,7 +30,7 @@ export const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log('Toggle Reducer: ', state, action);
+  // console.log('Toggle Reducer: ', state, action);
   switch (action.type) {
     case SET_ACTIVE_SATELLITE:
       return { ...state, active: action.option };

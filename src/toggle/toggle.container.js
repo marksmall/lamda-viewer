@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setActiveSatellite } from './toggle.actions';
 import { isActive, satellites } from './toggle.selector';
+import { setActiveSatellite } from './toggle.actions';
 
 import Toggle from './toggle.component';
 

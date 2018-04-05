@@ -1,0 +1,28 @@
+.feature-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-container h1 {
+  font-size: xx-large;
+  padding: 1rem;
+}
+
+.feature-container h1,
+.feature-container .table-header {
+  color: #808080;
+}
+
+.feature-container .table-header {
+  font-size: x-large;
+  padding-right: 1rem;
+}
+
+.feature-container .table-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.feature-container .feature-cell {
+  font-weight: bold;
+}

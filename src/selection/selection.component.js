@@ -1,20 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectionIndicator = ({ selection }) => {
+import styles from './selection.module.css';
+
+const SelectionIndicator = ({ selectedFeatures }) => {
+  console.log('Selected Features: ', selectedFeatures);
   return (
-    <div>
-      <h1>Selection</h1>
-      <p>
-        {selection.map(i => {
-          return (
-            <span>
-              PATH: {i.properties.PATH}, ROW: {i.properties.ROW}
-              <br />
+    <div className={styles['feature-container']}>
+      <h1 className={styles['selected-title']}>Selected</h1>
+
+      <div className={` ${styles['table-header']} ${styles['table-row']}`}>
+        <span>PATH</span>
+        <span>ROW</span>
+      </div>
+      {/* <div className={styles['table-row']}>
+        <span>204</span>
+        <span>24</span>
+      </div>
+      <div className={styles['table-row']}>
+        <span>204</span>
+        <span>24</span>
+      </div> */}
+
+      {selectedFeatures.map(feature => {
+        return (
+          <div className={styles['table-row']} key={feature.id}>
+            <span className={styles['feature-cell']}>
+              {feature.properties.PATH}
             </span>
-          );
-        })}
-      </p>
+            <span className={styles['feature-cell']}>
+              {feature.properties.ROW}
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 };
